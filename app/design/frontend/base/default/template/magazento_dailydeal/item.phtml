@@ -1,0 +1,84 @@
+<?php 
+
+$slider_id = $this->getData('slider_id');
+$collection = $this->getData('collection');
+$imageSize = $this->getData('image_size');
+$_helper = $this->helper('catalog/output');
+
+    foreach ($collection as $item) {
+
+        echo '<div class="section" id="section'.$slider_id.$item->getData('item_id').'">';
+
+            $product_id = $item->getData('catalog_product_id');
+            $_product = Mage::getModel('catalog/product')->load($product_id);
+
+            $_img = '<img 
+                id="image" class="liveshopping-image"
+                src="'.$this->helper('catalog/image')->init($_product, 'image')->resize($imageSize).'" 
+                alt="'.$this->htmlEscape($this->getImageLabel()).'"
+                title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+
+            echo $_helper->productAttribute($_product, $_img, 'image');     
+
+            echo '<div class="liveshopping-counter" id="counter'.$slider_id.$item->getData('item_id').'" ></div>';                     
+            echo '<script type="text/javascript">
+                        new DaysHMSCounter("'.Mage::helper('dailydeal')->formatTime($item->getData('to_time')).'", "counter'.$slider_id.$item->getData('item_id').'");
+                  </script>';        
+            
+            echo '<div class="liveshopping-product">';
+                echo '<a class="liveshopping-product-url" href="'.$_product->getProductUrl(). '">'.$_product->getData('name').'</a>';
+                if ($this->getData('show_description')) echo '<div class="liveshopping-product-descr">'.Mage::helper('dailydeal')->getWordLimit($_product->getData('short_description')).'</div>';
+            echo '</div>';
+
+
+            echo '<div class="liveshopping-prices">';
+                if ($_product->getTypeId() == 'simple' ||
+                    $_product->getTypeId() == 'virtual' ||
+                    $_product->getTypeId() == 'downloadable' ||
+                    $_product->getTypeId() == 'configurable') {
+                        
+                    echo '<div class="liveshopping-price-regular"><span>'.
+                            Mage::helper('dailydeal')->__('Regular price').':</span> '.Mage::helper('core/data')->currency($_product->getPrice())
+                          .'</div>';                            
+                    echo '<div class="liveshopping-price-final"><span>'.
+                            Mage::helper('dailydeal')->__('Final price').':</span> '.Mage::helper('core/data')->currency($_product->getFinalPrice())
+                          .'</div>';                            
+                    echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                        echo $this->__('Add to Cart');
+                    echo '</a>';                                       
+                } 
+                
+                if ($_product->getTypeId() == 'bundle') {
+
+                        $product_before = clone $_product;
+                        $product_before->setSpecialPrice(100);
+
+                        $_product_prices = $_product->getPriceModel()->getPrices($_product);
+                        $_product_product_before = $_product->getPriceModel()->getPrices($product_before);
+                        
+                        echo '<div class="liveshopping-price-regular"><span>'.
+                                Mage::helper('dailydeal')->__('Regular price from').':</span> '.Mage::helper('core/data')->currency($_product_prices[0])
+                              .'</div>';                            
+                        echo '<div class="liveshopping-price-final"><span>'.
+                                Mage::helper('dailydeal')->__('Final price from').':</span> '.Mage::helper('core/data')->currency($_product_product_before[0])
+                              .'</div>';        
+                        
+                        echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                            echo $this->__('Add to Cart');
+                        echo '</a>';                                
+                        
+                }  
+                
+                if ($_product->getTypeId() == 'grouped') {
+                        echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                            echo $this->__('Add to Cart');
+                        echo '</a>';                      
+                }                
+                
+
+            echo '</div>';
+
+        echo '</div>';
+    }
+
+?>

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    
+    <dailydeal_admin_item_related>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_related" name="related.grid"/>
+            <block type="admin/widget_grid_serializer" name="related_grid_serializer">
+                <reference name="related_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>related.grid</grid_block_name>
+                        <data_callback>getSelectedrelatedProducts</data_callback>
+                        <hidden_input_name>links[related]</hidden_input_name>
+                        <reload_param_name>products_related</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block> 
+    </dailydeal_admin_item_related>
+    <dailydeal_admin_item_relatedgrid>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_related" name="related.mgrid"/>
+        </block> 
+    </dailydeal_admin_item_relatedgrid>
+    
+    <dailydeal_admin_item_assigned>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_assigned" name="assigned.grid"/>
+            <block type="admin/widget_grid_serializer" name="assigned_grid_serializer">
+                <reference name="assigned_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>assigned.grid</grid_block_name>
+                        <data_callback>getSelectedassignedProducts</data_callback>
+                        <hidden_input_name>links[assigned]</hidden_input_name>
+                        <reload_param_name>products_assigned</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block> 
+    </dailydeal_admin_item_assigned>
+<!--    <dailydeal_admin_item_assignedgrid>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_assigned" name="assigned.mgrid"/>
+        </block> 
+    </dailydeal_admin_item_assignedgrid>-->
+    
+    <dailydeal_admin_item_reviews>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_tabhoriz_reviews" name="reviews.grid"/>
+            <block type="admin/widget_grid_serializer" name="reviews_grid_serializer">
+                <reference name="reviews_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>reviews.grid</grid_block_name>
+                        <data_callback>getSelectedreviewsProducts</data_callback>
+                        <hidden_input_name>links[reviews]</hidden_input_name>
+                        <reload_param_name>products_reviews</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block> 
+    </dailydeal_admin_item_reviews>
+<!--    <dailydeal_admin_item_reviewsgrid>
+        <block type="core/text_list" name="root" output="toHtml"> 
+            <block type="dailydeal/admin_item_edit_tab_tabhoriz_reviews" name="reviews.mgrid"/>
+        </block> 
+    </dailydeal_admin_item_reviewsgrid>-->
+    
+</layout>

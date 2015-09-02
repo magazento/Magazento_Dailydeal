@@ -1,0 +1,53 @@
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('magazento_dailydeal/countdown.create.phtml')->toHtml(); ?>
+<link href='http://fonts.googleapis.com/css?family=Michroma|Josefin+Sans:400,600,700|Julius+Sans+One|PT+Sans+Caption|Orbitron:400,700' rel='stylesheet' type='text/css'>
+
+<?php
+$storeId = Mage::app()->getStore()->getId();
+$collection = $this->getCheckoutItems($storeId);
+$slider_id = rand(11111, 99999);
+?>
+
+<div class="dailydeal-wrapper">
+    <div class="product-wrapper">
+    <div class="featured-deals">  </div>
+    <a class="deals-view-all" href="<?php echo $this->getUrl('dailydeal')?>"> <?php echo $this->__('View all deals'); ?></a>
+        
+    <?php if (count($collection) > 1 ): ?>           
+    <div class="easyslider" id="glider<?php echo $slider_id ?>">    
+        <div class="controls" >           
+            <?php foreach($collection as $item): ?>            
+                    <a class="slide-nav" href="#section<?php echo $slider_id.$item->getData('item_id'); ?>">  Slide #<?php echo $item->getData('item_id'); ?></a>
+            <?php endforeach; ?>   
+        </div>    
+        <div class="control-links" >
+            <a class="prev" href="#" onclick="easyglider<?php echo $slider_id ?>.previous();return false;">Previous</a>
+            <a class="next" href="#" onclick="easyglider<?php echo $slider_id ?>.next();return false">Next</a>                
+        </div>    
+    <?php endif ?>                     
+            <div class="scroller">
+                <div class="content">   
+
+                    <?php $this->getChild('magazento_dailydeal_items')->setData('show_description', true); ?>
+                    <?php $this->getChild('magazento_dailydeal_items')->setData('collection', $collection); ?>
+                    <?php $this->getChild('magazento_dailydeal_items')->setData('image_size', 105); ?>
+                    <?php $this->getChild('magazento_dailydeal_items')->setData('slider_id', $slider_id); ?>                    
+                    <?php echo $this->getChildHtml('magazento_dailydeal_items',false); ?>
+
+                </div>
+            </div>
+        
+    <?php if (count($collection) > 1 ): ?>           
+        </div>
+    <?php endif ?>      
+    </div>
+</div>
+
+
+<?php if (count($collection) > 1 ): ?>                          
+    <script type="text/javascript" charset="utf-8">
+        var easyglider<?php echo $slider_id ?> = new Glider('glider<?php echo $slider_id; ?>', {
+                                                duration:<?php echo Mage::getStoreConfig('dailydeal/slider/animduration') ?>,
+                                                autoGlide:<?php echo Mage::getStoreConfig('dailydeal/slider/autoplay') ?>,
+                                                frequency:<?php echo Mage::getStoreConfig('dailydeal/slider/slideduration') ?> });
+    </script>
+<?php endif; ?>     

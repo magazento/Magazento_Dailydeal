@@ -1,0 +1,466 @@
+.dailydeal-wrapper .featured-deals {
+    background: transparent url(images/featured_deals.png) no-repeat 0 0;
+    height: 135px;
+    width: 150px;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+}
+.dailydeal-wrapper-left .featured-deals, .dailydeal-wrapper-right .featured-deals {
+background: transparent url(images/featured_deals.png) no-repeat 0 -16px;
+height: 120px;
+width: 150px;
+position: absolute;
+top: 26px;
+left: -23px;
+z-index: 999;
+}
+
+.deals-view-all {
+    background: transparent url(images/view_more.png) no-repeat 0 0;
+    height: 42px;
+    width: 120px;
+    position: absolute;
+    bottom: 39px;
+    right: 108px;
+    font-size: 0;
+}
+
+
+.dailydeal-wrapper {
+    width: 465px;
+    height: 315px;
+    position: fixed;
+    left: 50%;
+    bottom: 0%;
+    margin-left: -205px;
+    margin-top: -100px;
+    background: transparent url(images/dailydeal0.png) no-repeat 0 0;
+    z-index: 999;
+    }
+    
+.liveshopping-product-descr {
+    width: 440px;
+    }
+.dailydeal-wrapper .liveshopping-product-descr {
+    width: 285px;
+    float: left;
+    color: black;
+    }
+
+.product-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    }
+    
+.liveshopping-image {
+    border: 1px solid #424242;
+    }
+    
+    
+/*CONTENT*/    
+.dailydeal-wrapper .liveshopping-image,
+.dailydeal-wrapper-content .liveshopping-image {
+    border: 1px solid black;
+    margin-bottom: 80px;
+    margin-right: 5px;
+    float: left;
+    display: block;    
+}
+.liveshopping-counter strong {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.dailydeal-wrapper-content .liveshopping-counter, .liveshopping-counter  {
+    font-size: 13px;
+    margin-top: 2px;
+    color: white;
+    background: black;
+    }
+    
+.col2-right-layout .dailydeal-wrapper-content .liveshopping-counter,
+.col2-left-layout .dailydeal-wrapper-content .liveshopping-counter {
+    font-size: 18px;
+    margin-top: 2px;
+    color: white;
+    background: black;
+}    
+.dailydeal-wrapper-left .liveshopping-counter,
+.dailydeal-wrapper-right .liveshopping-counter
+{
+    background: #000;
+    font-size: 12px;
+    margin-top: 0px;
+    color: white;
+    padding-left: 5px;
+    padding-right: 4px;
+    float: left;
+    width: 143px;    
+}
+    
+.dailydeal-wrapper-content .liveshopping-price-regular {
+    color: #fff;
+}
+.dailydeal-wrapper-content .liveshopping-price-final {
+    color: #fff;
+}
+
+/* SIDEBAR */
+.dailydeal-wrapper-left .liveshopping-product-url,
+.dailydeal-wrapper-right .liveshopping-product-url
+{
+    display: block;
+    clear: both;
+    color: #001B30;
+    font-size: 12px;
+    }
+    
+
+    
+.dailydeal-wrapper-left .liveshopping-price-regular,
+.dailydeal-wrapper-right .liveshopping-price-regular
+{
+    color: #fff;
+}
+
+.dailydeal-wrapper-left .liveshopping-price-final,
+.dailydeal-wrapper-right .liveshopping-price-final
+{
+    color: #fff;
+}    
+    
+.dailydeal-wrapper-left .liveshopping-prices,
+.dailydeal-wrapper-right .liveshopping-prices
+{
+    float: left;
+    display: block;
+    margin-left: 3px;
+}    
+    
+.dailydeal-wrapper-left .liveshopping-prices .button,
+.dailydeal-wrapper-right .liveshopping-prices .button {
+}    
+    
+.dailydeal-wrapper-left .countdown,
+.dailydeal-wrapper-right .countdown {
+    font-size: 12px;
+    float: left;
+    clear: both;
+    display: block;
+}    
+    
+    
+    
+.liveshopping-product-url {
+    font-size: 12px;
+    text-decoration: underline;
+    color: #001B30;
+    font-weight: bold;
+    font-family: 'PT Sans Caption', sans-serif;
+} 
+    
+.liveshopping-prices .button {
+    overflow: visible;
+    width: auto;
+    padding: 2px 7px;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid #DE5400;
+    background: #F18200;
+    color: white;
+    font-weight: bold;
+    height: 17px;
+    float: left;    
+}    
+    
+    
+
+.liveshopping-short-description {
+    font-size: 12px;
+    line-height: 13px;
+}
+
+.product-wrapper .price-box {
+    /*position: absolute;*/
+    top: 160px;
+    left: 35px;    
+}
+.liveshopping-stock {
+    top: 185px;
+    left: 35px;
+    font-style: italic;
+    color: green;
+    font-weight: bold;
+    }
+.liveshopping-price-save {
+    top: 200px;
+    left: 35px;
+    color: #AE0A4D;
+    font-weight: bold;
+    font-family: 'Julius Sans One', sans-serif;        
+    }
+.liveshopping-price-regular {
+    top: 200px;
+    left: 35px;
+    color: #2F2F2F;
+    font-weight: bold;
+    margin-top: 3px;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 10px;
+    }
+.liveshopping-price-final {
+    top: 200px;
+    left: 35px;
+    color: #2F2F2F;
+    font-weight: bold;
+    font-family: 'Julius Sans One', sans-serif;    
+    }    
+.liveshopping-price-regular span.price {
+    color: #fff;
+    font-weight: bold;    
+    font-size: 10px;
+    font-family: 'PT Sans Caption', sans-serif;
+}    
+.liveshopping-price-final span.price {
+    color: #fff;
+    font-size: 15px;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: 100;
+}    
+.dailydeal-wrapper-content .liveshopping-price-final span.price {
+font-size: 20px;
+}
+.dailydeal-wrapper .liveshopping-price-final span.price {
+font-size: 24px;
+}
+
+
+.liveshopping-counter {
+    margin-top: 2px;
+    font-size: 14px;
+    /*background: white;*/
+    font-family: 'Julius Sans One', sans-serif;        
+    }
+    
+
+.liveshopping-percent {
+    color: #AE0A4D;
+    font-weight: bold;
+}
+.liveshopping-prices {
+    float: left;
+    display: block;
+}
+
+
+    
+/* SLIDER */
+
+.easyslider div.scroller {
+    overflow: hidden;
+    width: 100%;
+    position: static;
+}
+
+    
+.firstsliderssamplecontainer a {color:#999}
+
+
+.dailydeal-wrapper .easyslider div.scroller {
+    overflow: hidden;
+    width: 420px;
+    position: static;
+    margin-left: 40px;
+    }  
+
+div.scroller div.section {
+    padding: 45px 0 0 42px;
+    width: 420px;
+    height: 205px;    
+}
+
+.easyslider div.scroller div.section {
+    overflow: hidden;
+    float: left;
+    padding: 2px 0 0 0px;
+    width: 420px;
+    height: 205px;
+    margin-right: 15px;
+    }
+    
+    
+    
+
+.dailydeal-wrapper-content .easyslider div.scroller,
+.dailydeal-wrapper-left .easyslider div.scroller,
+.dailydeal-wrapper-right .easyslider div.scroller{
+    position: static;
+    width: 100%;
+    overflow: hidden;
+    } 
+    
+    
+/* LEFT RIGHT */
+.dailydeal-wrapper-left div.scroller div.section, .dailydeal-wrapper-right div.scroller div.section {
+    float: left;
+    width: 152px;
+    height: 420px;
+    background: transparent url(images/dailydeal-sidebar.png) no-repeat 0 0;
+    padding: 41px 23px 0 18px;
+    }
+    
+/* CONTENT */      
+.col3-layout .dailydeal-wrapper-content div.scroller div.section {
+    background: transparent url(images/dailydeal-content.png) no-repeat 0 -12px;
+    float: left;
+    width: 480px;
+    height: 160px;
+    padding: 58px 0 0 110px;
+
+}
+    
+/* BANNER */    
+.dailydeal-wrapper-content div.scroller div.section {
+    float: left;
+    width: 730px;
+    height: 245px;
+    background: transparent url(images/dailydeal-content-2col.png) no-repeat 0 -12px;
+    padding: 73px 0 0 160px;
+    }
+
+
+div.scroller div.content {
+    width: 10000px;
+    padding:0px;
+}
+
+.easyslider .controls {
+    float: right;
+    margin-left: 0;
+    margin-top: 0;
+    }
+    
+.dailydeal-wrapper .easyslider .controls {
+    float: right;
+    margin-right: 5px;
+    margin-top: 35px;
+    display: block;
+}
+
+.easyslider .control-links {
+    float: right;
+    margin-top: 0;
+    margin-right: 0;
+    }
+.dailydeal-wrapper .easyslider .control-links {
+    float: right;
+    margin-top: 35px;
+    margin-right: 10px;
+    }
+    
+.easyslider .controls a.slide-nav {
+    display: inline-block;
+    overflow: hidden;
+    /*text-indent: -100em;*/
+    font-size: 0;
+    line-height: 0;
+    background: url(images/carousel_nav.png) no-repeat 0 0;
+    outline: none;
+    width: 11px;
+    height: 11px;
+    margin-right: 7px;
+}
+.easyslider .controls a.slide-nav:hover { 
+    background-position: -46px 0;
+}
+    
+
+.easyslider .control-links a {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;    
+    /*text-indent: -100em;*/
+    background: url(images/carousel_nav.png) no-repeat 0 0;
+    outline: none;
+    width: 11px;
+    height: 11px;
+    margin-left: 4px;
+}
+.easyslider .control-links a.prev {
+    background-position: -91px 0;
+}
+.easyslider .control-links a.next {
+    background-position: -135px 0;
+}
+.easyslider .control-links a.prev:hover {
+    background-position: -179px 0;
+}
+.easyslider .control-links a.next:hover {
+    background-position: -223px 0;
+}
+
+.easy-content-bottom,.easy-content-top {
+    float: left;
+    display: block;
+    width: 100%;
+    }
+    
+    
+/* View All */    
+
+
+.deals-grid li {
+    width: 300px;
+    float: left;
+    margin-bottom: 20px;
+    }
+
+.deals-grid li {
+    width: 235px;
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    background: transparent url(images/view_all_item.png) no-repeat 0 -12px;
+    height: 200px;
+    padding: 5px 0 0 45px;
+    }
+
+.deals-grid .liveshopping-counter {
+    margin-top: 2px;
+    font-size: 10px;
+    font-family: 'Julius Sans One', sans-serif;
+}
+.deals-grid .countdown {
+  font-size: 8px;  
+}
+.deals-grid .liveshopping-product-url {
+    font-size: 10px;
+}
+
+.deals-list {
+    padding: 10px;
+    border: 1px solid #DDD;
+    float: left;
+    background: #FEFEFE;    
+    width: 880px;
+}
+
+.deals-list div.scroller div.section {
+    width: 880px;
+    height: 100%;
+}
+
+.deals-list .liveshopping-image {
+border: 1px solid #424242;
+float: left;
+margin-right: 5px;
+}
+
+.deal-content-bottom {
+    clear: both;
+}
+.deal-content-top {
+    clear: both;
+}

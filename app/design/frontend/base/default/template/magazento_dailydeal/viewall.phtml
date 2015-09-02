@@ -1,0 +1,146 @@
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('magazento_dailydeal/countdown.create.phtml')->toHtml(); ?>
+<link href='http://fonts.googleapis.com/css?family=Michroma|Josefin+Sans:400,600,700|Julius+Sans+One|PT+Sans+Caption|Orbitron:400,700' rel='stylesheet' type='text/css'>
+
+<div class="deal-content-top">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::getStoreConfig('dailydeal/options/topblock'))->toHtml() ?>    
+</div>
+
+
+<?php
+    $storeId = Mage::app()->getStore()->getId();
+    $collection = $this->getViewItems($storeId);
+    $slider_id = rand(11111, 99999);
+    $_helper = $this->helper('catalog/output');
+?>
+
+<?php if(!$collection->count()): ?>
+    <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<div class="deals-list">
+    <?php $_collectionSize = $collection->count() ?>
+    <?php $_columnCount = Mage::getStoreConfig('dailydeal/viewall/dealslimit'); ?>
+    
+    
+    
+    <div class="easyslider" id="glider<?php echo $slider_id ?>">        
+        <?php if ((count($collection) > 1 ) && ($_columnCount < count($collection) )): ?>
+                <div class="control-links" >
+                    <a class="prev" href="#" onclick="easyglider<?php echo $slider_id ?>.previous();return false;">Previous</a>
+                    <a class="next" href="#" onclick="easyglider<?php echo $slider_id ?>.next();return false">Next</a>                
+                </div>        
+                <div class="controls" >           
+                    <?php $i=0; foreach($collection as $item): ?>            
+                        <?php $i++; ?>            
+                        <?php if(($i-1)%$_columnCount==0):  ?>            
+                            <a class="slide-nav" href="#section<?php echo $slider_id.$item->getData('item_id'); ?>">  Slide #<?php echo $item->getData('item_id'); ?></a>
+                        <?php endif; ?>
+                    <?php endforeach; ?>   
+                </div>              
+        <?php endif ?>    
+        
+        <div class="scroller">
+            <div class="content">                
+                <?php $i=0; foreach ($collection as $item): ?>
+                    <?php if ($i%$_columnCount==0): ?>
+                        <div class="section" id="section<?php echo $slider_id.$item->getData('item_id'); ?>">                
+                        <ul class="deals-grid">
+                    <?php endif ?>
+                            <li class="item<?php $i++; if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+
+                                <?php 
+                                        $product_id = $item->getData('catalog_product_id');
+                                        $_product = Mage::getModel('catalog/product')->load($product_id);
+
+                                        $_img = '<img 
+                                            id="image" class="liveshopping-image"
+                                            src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(50).'" 
+                                            alt="'.$this->htmlEscape($this->getImageLabel()).'"
+                                            title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+
+                                        echo $_helper->productAttribute($_product, $_img, 'image');     
+
+                                        echo '<div class="liveshopping-counter" id="counter'.$slider_id.$item->getData('item_id').'" ></div>';                     
+                                        echo '<script type="text/javascript">
+                                                    new DaysHMSCounter("'.Mage::helper('dailydeal')->formatTime($item->getData('to_time')).'", "counter'.$slider_id.$item->getData('item_id').'");
+                                              </script>'; 
+                                        echo '<div class="liveshopping-product">';
+                                            echo '<a class="liveshopping-product-url" href="'.$_product->getProductUrl(). '">'.$_product->getData('name').'</a>';
+                                            if ($this->getData('show_description')) echo '<div class="liveshopping-product-descr">'.Mage::helper('dailydeal')->getWordLimit($_product->getData('short_description')).'</div>';
+                                        echo '</div>';
+
+
+                                        echo '<div class="liveshopping-prices">';
+                                            if ($_product->getTypeId() == 'simple' ||
+                                                $_product->getTypeId() == 'virtual' ||
+                                                $_product->getTypeId() == 'downloadable' ||
+                                                $_product->getTypeId() == 'configurable') {
+
+                                                echo '<div class="liveshopping-price-regular"><span>'.
+                                                        Mage::helper('dailydeal')->__('Regular price').':</span> '.Mage::helper('core/data')->currency($_product->getPrice())
+                                                      .'</div>';                            
+                                                echo '<div class="liveshopping-price-final"><span>'.
+                                                        Mage::helper('dailydeal')->__('Final price').':</span> '.Mage::helper('core/data')->currency($_product->getFinalPrice())
+                                                      .'</div>';                            
+                                                echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                                                    echo $this->__('Add to Cart');
+                                                echo '</a>';                                       
+                                            } 
+
+                                            if ($_product->getTypeId() == 'bundle') {
+
+                                                    $product_before = clone $_product;
+                                                    $product_before->setSpecialPrice(100);
+
+                                                    $_product_prices = $_product->getPriceModel()->getPrices($_product);
+                                                    $_product_product_before = $_product->getPriceModel()->getPrices($product_before);
+
+                                                    echo '<div class="liveshopping-price-regular"><span>'.
+                                                            Mage::helper('dailydeal')->__('Regular price from').':</span> '.Mage::helper('core/data')->currency($_product_prices[0])
+                                                          .'</div>';                            
+                                                    echo '<div class="liveshopping-price-final"><span>'.
+                                                            Mage::helper('dailydeal')->__('Final price from').':</span> '.Mage::helper('core/data')->currency($_product_product_before[0])
+                                                          .'</div>';        
+
+                                                    echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                                                        echo $this->__('Add to Cart');
+                                                    echo '</a>';                                
+
+                                            }  
+
+                                            if ($_product->getTypeId() == 'grouped') {
+                                                    echo '<a type="button" title="'.$this->__('Add to Cart').'" class="button btn-cart" href="'.Mage::getUrl('checkout/cart/add', array('product' => $_product->getId())).'">';
+                                                        echo $this->__('Add to Cart');
+                                                    echo '</a>';                      
+                                            }                
+
+
+                                        echo '</div>';
+                                ?>
+                            </li>
+                    <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+                            </ul>
+                        </div>                              
+                    <?php endif ?>
+                <?php endforeach ?>
+            </div>                
+        </div>               
+    </div>                  
+                
+                
+</div>
+<?php endif; ?>
+
+
+<div class="deal-content-bottom">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId(Mage::getStoreConfig('dailydeal/options/bottomblock'))->toHtml() ?>        
+</div>
+
+
+<?php if ((count($collection) > 1 ) && ($_columnCount < count($collection) )): ?>                        
+    <script type="text/javascript" charset="utf-8">
+        var easyglider<?php echo $slider_id ?> = new Glider('glider<?php echo $slider_id; ?>', {
+                                                duration:<?php echo Mage::getStoreConfig('dailydeal/slider/animduration') ?>,
+                                                autoGlide:<?php echo Mage::getStoreConfig('dailydeal/slider/autoplay') ?>,
+                                                frequency:<?php echo Mage::getStoreConfig('dailydeal/slider/slideduration') ?> });
+    </script>
+<?php endif; ?>   
